@@ -1,6 +1,8 @@
-html, body { width: 100%; height: 100%; overflow: hidden; }
-html,
-body {
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
   margin: 0;
   padding: 0;
 }
@@ -72,8 +74,8 @@ body {
 #effect-selector {
   position: absolute;
 
-  left: 12px;
-  top: 0px;
+  left: 0;
+  top: 65px;
 
   display: flex;
 
@@ -91,7 +93,7 @@ body {
 
   box-sizing: border-box;
 
-  padding: 7px 11px;
+  padding: 9.45px 14.85px;
 
   border: 0;
   border-right: 1px solid #B7BABF;
@@ -101,8 +103,7 @@ body {
 
   font-family: inherit;
 
-  /* unified UI text size */
-  font-size: 8px;
+  font-size: 10.8px;
   letter-spacing: 0.04em;
 
   white-space: nowrap;
@@ -126,14 +127,14 @@ body {
 #displacement-controls {
   position: absolute;
 
-  left: 12px;
-  top: 36px;
+  left: 0;
+  top: 113.6px;
 
   width: auto;
 
   box-sizing: border-box;
 
-  padding: 10px;
+  padding: 13.5px;
 
   background: #f9f9f9;
 
@@ -146,10 +147,9 @@ body {
 /* EFFECT TITLE */
 
 .control-title {
-  margin-bottom: 11px;
+  margin-bottom: 14.85px;
 
-  /* slightly larger than everything else */
-  font-size: 10px;
+  font-size: 13.5px;
   line-height: 1;
 
   font-weight: 700;
@@ -161,13 +161,13 @@ body {
 /* GROUPS */
 
 .control-group {
-  margin-top: 14px;
+  margin-top: 18.9px;
 }
 
 .control-label {
-  margin-bottom: 6px;
+  margin-bottom: 8.1px;
 
-  font-size: 8px;
+  font-size: 10.8px;
 
   letter-spacing: 0.04em;
 }
@@ -177,11 +177,11 @@ body {
 
   justify-content: space-between;
 
-  gap: 8px;
+  gap: 10.8px;
 
-  margin-bottom: -1px;
+  margin-bottom: -1.35px;
 
-  font-size: 8px;
+  font-size: 10.8px;
 
   letter-spacing: 0.04em;
 
@@ -198,11 +198,11 @@ body {
 
   box-sizing: border-box;
 
-  padding: 6px 4px;
+  padding: 8.1px 5.4px;
 
   border: 1px solid #B7BABF;
 
-  font-size: 8px;
+  font-size: 10.8px;
 
   text-align: center;
 
@@ -222,19 +222,24 @@ body {
 }
 
 
-/* Spikes only: bring vertical / horizontal closer to Upload Image. */
+/* DIRECTION BUTTON SPACING */
+
 .spikes-direction-buttons {
-  margin-top: -6px;
+  margin-top: -8.1px;
 }
 
-/* Slice only: bring vertical / horizontal closer to Upload Image. */
 .slice-direction-buttons {
-  margin-top: -6px;
+  margin-top: -8.1px;
 }
 
-/* WARP: keep mode buttons compact on desktop and mobile */
-.warp-mode-buttons { margin-top: -6px; }
-.warp-mode-buttons .direction-button { white-space: nowrap; }
+.warp-mode-buttons {
+  margin-top: -8.1px;
+}
+
+.warp-mode-buttons .direction-button {
+  white-space: nowrap;
+}
+
 
 /* DIRECTION */
 
@@ -246,7 +251,7 @@ body {
 .direction-button {
   width: 50%;
 
-  padding: 5px 2px;
+  padding: 6.75px 2.7px;
 
   border: 1px solid #B7BABF;
 
@@ -255,7 +260,7 @@ body {
 
   font-family: inherit;
 
-  font-size: 8px;
+  font-size: 10.8px;
 
   letter-spacing: 0.04em;
 
@@ -295,8 +300,8 @@ body {
   appearance: none;
   -webkit-appearance: none;
 
-  width: 11px;
-  height: 11px;
+  width: 14.85px;
+  height: 14.85px;
 
   border: 1px solid #B7BABF;
 
@@ -308,8 +313,8 @@ body {
 }
 
 .tool-slider::-moz-range-thumb {
-  width: 11px;
-  height: 11px;
+  width: 14.85px;
+  height: 14.85px;
 
   border: 1px solid #B7BABF;
 
@@ -328,9 +333,9 @@ body {
 
   width: 100%;
 
-  margin-top: 14px;
+  margin-top: 18.9px;
 
-  padding: 6px 4px;
+  padding: 8.1px 5.4px;
 
   border: 1px solid #B7BABF;
 
@@ -339,7 +344,7 @@ body {
 
   font-family: inherit;
 
-  font-size: 8px;
+  font-size: 10.8px;
 
   letter-spacing: 0.04em;
 
@@ -356,17 +361,80 @@ body {
    RESPONSIVE / TOUCH
    ========================================================= */
 
-/*
-  The effect itself uses the same code on desktop and mobile.
-  Only the controls are adapted here for smaller/touch screens.
-*/
-
 #displacement-tool,
 #displacement-tool * {
   -webkit-tap-highlight-color: transparent;
 }
 
 @media (max-width: 767px) {
+
+  /* RESTORE ORIGINAL MOBILE UI SIZES */
+
+  .effect-selector-button {
+    font-size: 8px;
+    padding: 9px 3px;
+  }
+
+  #displacement-controls {
+    padding: 10px;
+  }
+
+  .control-title {
+    font-size: 10px;
+  }
+
+  .control-label,
+  .control-label-row,
+  .upload-button,
+  .direction-button,
+  .action-button {
+    font-size: 8px;
+  }
+
+  .upload-button {
+    padding: 8px 4px;
+  }
+
+  .direction-button {
+    padding: 7px 4px;
+  }
+
+  .action-button {
+    padding: 8px 4px;
+  }
+
+  .tool-slider::-webkit-slider-thumb {
+    width: 14px;
+    height: 14px;
+  }
+
+  .tool-slider::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+  }
+
+  .spikes-direction-buttons,
+  .slice-direction-buttons,
+  .warp-mode-buttons {
+    margin-top: -6px;
+  }
+
+  .control-group {
+    margin-top: 10px;
+  }
+
+  .control-label {
+    margin-bottom: 2px;
+  }
+
+  .control-label-row {
+    gap: 8px;
+    margin-bottom: -3px;
+  }
+
+
+  /* MOBILE LAYOUT */
+
   #spikes-controls .upload-button,
   #slice-controls .upload-button {
     margin-bottom: 0 !important;
@@ -377,15 +445,13 @@ body {
     margin-top: -1px !important;
   }
 
-
-
-  /* Mobile: attach vertical / horizontal directly to Upload Image. */
   .upload-button + .direction-buttons,
   .upload-button + .spikes-direction-buttons,
   .upload-button + .slice-direction-buttons {
     margin-top: 0 !important;
   }
-#displacement-tool {
+
+  #displacement-tool {
     padding-top: 0;
     overflow: hidden;
   }
@@ -413,34 +479,32 @@ body {
   }
 
   #effect-selector {
-    left: 12px;
+    left: 0;
     right: 12px;
-    top: 0px;
+    top: 0;
+
     width: auto;
   }
 
   .effect-selector-button {
     flex: 1 1 0;
     min-width: 0;
-    padding: 9px 3px;
   }
 
   #displacement-controls {
-    left: 12px;
+    left: 0;
     top: 40px;
-    max-width: calc(100% - 24px);
-    padding: 10px;
+
+    max-width: calc(100% - 12px);
   }
 
   .direction-button {
     min-height: 32px;
-    padding: 7px 4px;
   }
 
   .upload-button,
   .action-button {
     min-height: 32px;
-    padding: 8px 4px;
   }
 
   .upload-button {
@@ -450,10 +514,9 @@ body {
     line-height: 1;
   }
 
-  /*
-    Keep the slider visually thin, but give the finger a much
-    larger invisible hit area around it.
-  */
+
+  /* MOBILE SLIDERS */
+
   .tool-slider {
     height: 28px;
     background: transparent;
@@ -488,28 +551,13 @@ body {
     box-shadow: none;
   }
 
+
   /* COMPACT MOBILE UI */
 
-  .control-group {
-    margin-top: 10px;
-  }
-
-  /* Keep breathing room after vertical / horizontal buttons. */
   .direction-buttons + .control-group {
     margin-top: 12px;
   }
 
-  .control-label {
-    margin-bottom: 2px;
-  }
-
-  .control-label-row {
-    margin-bottom: -3px;
-  }
-
-  /* The slider itself has a 28px touch box on mobile.
-     Pull the next slider group upward without changing
-     the good label-to-track distance inside each group. */
   .control-group:has(.tool-slider) + .control-group:has(.tool-slider) {
     margin-top: -1px;
   }
@@ -523,10 +571,9 @@ body {
   }
 }
 
-/*
-  Touch browsers can keep :hover after a tap. Remove that
-  sticky state while preserving the real active/selected state.
-*/
+
+/* TOUCH STATES */
+
 @media (hover: none), (pointer: coarse) {
 
   .effect-selector-button:not(.active):hover,
@@ -543,82 +590,5 @@ body {
   .action-button:active {
     background: #B7BABF;
     color: #f9f9f9;
-  }
-}
-
-/* =========================================================
-   DESKTOP ONLY — FULL-PAGE EMBED + LARGER UI
-   Mobile rules above remain unchanged.
-   ========================================================= */
-@media (min-width: 768px) {
-  /* Full-page iframe begins at the top of Readymag.
-     Compensate for the original 65px header offset. */
-  #effect-selector {
-    top: 65px;
-    left: 12px;
-  }
-
-  #displacement-controls {
-    top: 111px;
-    left: 12px;
-    padding: 14px;
-  }
-
-  /* Approx. 135% of the original desktop UI. */
-  .effect-selector-button {
-    padding: 10px 15px;
-    font-size: 11px;
-  }
-
-  .control-title {
-    font-size: 14px;
-    margin-bottom: 15px;
-  }
-
-  .control-group {
-    margin-top: 19px;
-  }
-
-  .control-label {
-    font-size: 11px;
-    margin-bottom: 8px;
-  }
-
-  .control-label-row {
-    font-size: 11px;
-    gap: 11px;
-  }
-
-  .upload-button,
-  .action-button {
-    font-size: 11px;
-    padding: 8px 6px;
-  }
-
-  .action-button {
-    margin-top: 19px;
-  }
-
-  .direction-button {
-    font-size: 11px;
-    padding: 7px 3px;
-  }
-
-  .tool-slider::-webkit-slider-thumb {
-    width: 15px;
-    height: 15px;
-  }
-
-  .tool-slider::-moz-range-thumb {
-    width: 15px;
-    height: 15px;
-  }
-
-  /* Keep the original close spacing for mode buttons,
-     adjusted proportionally for the larger UI. */
-  .spikes-direction-buttons,
-  .slice-direction-buttons,
-  .warp-mode-buttons {
-    margin-top: -8px;
   }
 }
