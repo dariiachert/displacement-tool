@@ -668,16 +668,9 @@
         displayWidth = Math.round(sourceImage.width * displayScale);
         displayHeight = Math.round(sourceImage.height * displayScale) + 2;
 
-        offsetX = Math.round((p.width - displayWidth) / 2);
+       offsetX = Math.round((p.width - displayWidth) / 2);
 
-        const isMobile =
-          window.matchMedia(
-            "(max-width: 767px), (hover: none) and (pointer: coarse)"
-          ).matches;
-
-        offsetY = isMobile
-          ? 0
-          : Math.round((p.height - displayHeight) / 2);
+offsetY = 0;
 
         generateSpikes();
         prepareSlicePreview();
