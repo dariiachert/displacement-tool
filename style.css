@@ -545,3 +545,80 @@ body {
     color: #f9f9f9;
   }
 }
+
+/* =========================================================
+   DESKTOP ONLY — FULL-PAGE EMBED + LARGER UI
+   Mobile rules above remain unchanged.
+   ========================================================= */
+@media (min-width: 768px) {
+  /* Full-page iframe begins at the top of Readymag.
+     Compensate for the original 65px header offset. */
+  #effect-selector {
+    top: 65px;
+    left: 12px;
+  }
+
+  #displacement-controls {
+    top: 111px;
+    left: 12px;
+    padding: 14px;
+  }
+
+  /* Approx. 135% of the original desktop UI. */
+  .effect-selector-button {
+    padding: 10px 15px;
+    font-size: 11px;
+  }
+
+  .control-title {
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+
+  .control-group {
+    margin-top: 19px;
+  }
+
+  .control-label {
+    font-size: 11px;
+    margin-bottom: 8px;
+  }
+
+  .control-label-row {
+    font-size: 11px;
+    gap: 11px;
+  }
+
+  .upload-button,
+  .action-button {
+    font-size: 11px;
+    padding: 8px 6px;
+  }
+
+  .action-button {
+    margin-top: 19px;
+  }
+
+  .direction-button {
+    font-size: 11px;
+    padding: 7px 3px;
+  }
+
+  .tool-slider::-webkit-slider-thumb {
+    width: 15px;
+    height: 15px;
+  }
+
+  .tool-slider::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+  }
+
+  /* Keep the original close spacing for mode buttons,
+     adjusted proportionally for the larger UI. */
+  .spikes-direction-buttons,
+  .slice-direction-buttons,
+  .warp-mode-buttons {
+    margin-top: -8px;
+  }
+}
