@@ -396,6 +396,7 @@ body {
 
   :root {
     --tool-top: 0px;
+    --mobile-side-gap: 12px;
   }
 
 
@@ -487,20 +488,25 @@ body {
     overflow: hidden;
   }
 
+
+  /* PHOTO AREA BELOW CONTROLS */
+
   #displacement-canvas-container {
     position: absolute;
 
     top: var(--mobile-canvas-top, 0px);
     bottom: 0;
-    left: 12px;
-    right: 12px;
+
+    left: var(--mobile-side-gap);
+    right: var(--mobile-side-gap);
 
     width: auto;
     height: auto;
 
     margin: 0;
+    padding: 0;
 
-    transform: translateY(-100px);
+    transform: none;
   }
 
   #displacement-canvas-container canvas {
@@ -509,9 +515,12 @@ body {
     top: 0;
   }
 
+
+  /* EFFECT SELECTOR */
+
   #effect-selector {
-    left: 0;
-    right: 12px;
+    left: var(--mobile-side-gap);
+    right: var(--mobile-side-gap);
     top: 0;
 
     width: auto;
@@ -522,11 +531,16 @@ body {
     min-width: 0;
   }
 
+
+  /* CONTROLS */
+
   #displacement-controls {
-    left: 0;
+    left: var(--mobile-side-gap);
     top: 40px;
 
-    max-width: calc(100% - 12px);
+    max-width: calc(
+      100% - 2 * var(--mobile-side-gap)
+    );
   }
 
   .direction-button {
@@ -589,7 +603,8 @@ body {
     margin-top: 12px;
   }
 
-  .control-group:has(.tool-slider) + .control-group:has(.tool-slider) {
+  .control-group:has(.tool-slider)
+  + .control-group:has(.tool-slider) {
     margin-top: -1px;
   }
 
