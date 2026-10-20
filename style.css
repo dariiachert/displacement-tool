@@ -494,7 +494,7 @@ body {
   #displacement-canvas-container {
     position: absolute;
 
-    top: var(--mobile-canvas-top, 0px);
+    top: calc(var(--mobile-canvas-top, 0px) - 10px);
     bottom: 0;
 
     left: var(--mobile-side-gap);
