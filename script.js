@@ -4174,3 +4174,22 @@ function meltBuildRowMap(w, h, positionValue, radiusValue, distortionValue) {
   }
 
 })();
+
+/* Send cursor coordinates to Readymag */
+
+(function () {
+  if (window.parent === window) {
+    return;
+  }
+
+  document.addEventListener("mousemove", function (event) {
+    window.parent.postMessage(
+      {
+        type: "displacement-cursor",
+        x: event.clientX,
+        y: event.clientY
+      },
+      "https://dariiachert.com"
+    );
+  }, { passive: true });
+})();
