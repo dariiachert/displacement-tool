@@ -1,0 +1,547 @@
+html, body { width: 100%; height: 100%; overflow: hidden; }
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#displacement-tool {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+  overflow: hidden;
+
+  background: #f9f9f9;
+
+  font-family:
+    "ABCAreal",
+    Arial,
+    sans-serif;
+
+  color: #1C1D21;
+}
+
+
+/* CANVAS */
+
+#displacement-canvas-container {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+  overflow: hidden;
+
+  background: #f9f9f9;
+
+  z-index: 1;
+}
+
+#displacement-canvas-container canvas {
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  display: block;
+
+  margin: 0;
+  padding: 0;
+}
+
+
+/* EFFECT SELECTOR */
+
+#effect-selector {
+  position: absolute;
+
+  left: 12px;
+  top: 0px;
+
+  display: flex;
+
+  box-sizing: border-box;
+
+  background: #f9f9f9;
+
+  border: 1px solid #B7BABF;
+
+  z-index: 100;
+}
+
+.effect-selector-button {
+  display: block;
+
+  box-sizing: border-box;
+
+  padding: 7px 11px;
+
+  border: 0;
+  border-right: 1px solid #B7BABF;
+
+  background: transparent;
+  color: #1C1D21;
+
+  font-family: inherit;
+
+  /* unified UI text size */
+  font-size: 8px;
+  letter-spacing: 0.04em;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+}
+
+.effect-selector-button:last-child {
+  border-right: 0;
+}
+
+.effect-selector-button:hover,
+.effect-selector-button.active {
+  background: #B7BABF;
+  color: #f9f9f9;
+}
+
+
+/* CONTROLS */
+
+#displacement-controls {
+  position: absolute;
+
+  left: 12px;
+  top: 36px;
+
+  width: auto;
+
+  box-sizing: border-box;
+
+  padding: 10px;
+
+  background: #f9f9f9;
+
+  border: 1px solid #B7BABF;
+
+  z-index: 100;
+}
+
+
+/* EFFECT TITLE */
+
+.control-title {
+  margin-bottom: 11px;
+
+  /* slightly larger than everything else */
+  font-size: 10px;
+  line-height: 1;
+
+  font-weight: 700;
+
+  letter-spacing: 0.04em;
+}
+
+
+/* GROUPS */
+
+.control-group {
+  margin-top: 14px;
+}
+
+.control-label {
+  margin-bottom: 6px;
+
+  font-size: 8px;
+
+  letter-spacing: 0.04em;
+}
+
+.control-label-row {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 8px;
+
+  margin-bottom: -1px;
+
+  font-size: 8px;
+
+  letter-spacing: 0.04em;
+
+  white-space: nowrap;
+}
+
+
+/* UPLOAD */
+
+.upload-button {
+  display: block;
+
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 6px 4px;
+
+  border: 1px solid #B7BABF;
+
+  font-size: 8px;
+
+  text-align: center;
+
+  letter-spacing: 0.04em;
+
+  cursor: pointer;
+  user-select: none;
+}
+
+.upload-button:hover {
+  background: #B7BABF;
+  color: #f9f9f9;
+}
+
+#displacement-upload {
+  display: none;
+}
+
+
+/* Spikes only: bring vertical / horizontal closer to Upload Image. */
+.spikes-direction-buttons {
+  margin-top: -6px;
+}
+
+/* Slice only: bring vertical / horizontal closer to Upload Image. */
+.slice-direction-buttons {
+  margin-top: -6px;
+}
+
+/* WARP: keep mode buttons compact on desktop and mobile */
+.warp-mode-buttons { margin-top: -6px; }
+.warp-mode-buttons .direction-button { white-space: nowrap; }
+
+/* DIRECTION */
+
+.direction-buttons {
+  display: flex;
+  width: 100%;
+}
+
+.direction-button {
+  width: 50%;
+
+  padding: 5px 2px;
+
+  border: 1px solid #B7BABF;
+
+  background: transparent;
+  color: #1C1D21;
+
+  font-family: inherit;
+
+  font-size: 8px;
+
+  letter-spacing: 0.04em;
+
+  cursor: pointer;
+}
+
+.direction-button:first-child {
+  border-right: 0;
+}
+
+.direction-button.active {
+  background: #B7BABF;
+  color: #f9f9f9;
+}
+
+
+/* SLIDERS */
+
+.tool-slider {
+  width: 100%;
+
+  margin: 0;
+
+  appearance: none;
+  -webkit-appearance: none;
+
+  height: 1px;
+
+  background: #B7BABF;
+
+  outline: none;
+
+  cursor: pointer;
+}
+
+.tool-slider::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+
+  width: 11px;
+  height: 11px;
+
+  border: 1px solid #B7BABF;
+
+  border-radius: 0;
+
+  background: #f9f9f9;
+
+  cursor: pointer;
+}
+
+.tool-slider::-moz-range-thumb {
+  width: 11px;
+  height: 11px;
+
+  border: 1px solid #B7BABF;
+
+  border-radius: 0;
+
+  background: #f9f9f9;
+
+  cursor: pointer;
+}
+
+
+/* ACTION */
+
+.action-button {
+  display: block;
+
+  width: 100%;
+
+  margin-top: 14px;
+
+  padding: 6px 4px;
+
+  border: 1px solid #B7BABF;
+
+  background: transparent;
+  color: #1C1D21;
+
+  font-family: inherit;
+
+  font-size: 8px;
+
+  letter-spacing: 0.04em;
+
+  cursor: pointer;
+}
+
+.action-button:hover {
+  background: #B7BABF;
+  color: #f9f9f9;
+}
+
+
+/* =========================================================
+   RESPONSIVE / TOUCH
+   ========================================================= */
+
+/*
+  The effect itself uses the same code on desktop and mobile.
+  Only the controls are adapted here for smaller/touch screens.
+*/
+
+#displacement-tool,
+#displacement-tool * {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 767px) {
+  #spikes-controls .upload-button,
+  #slice-controls .upload-button {
+    margin-bottom: 0 !important;
+  }
+
+  #spikes-controls .direction-buttons,
+  #slice-controls .direction-buttons {
+    margin-top: -1px !important;
+  }
+
+
+
+  /* Mobile: attach vertical / horizontal directly to Upload Image. */
+  .upload-button + .direction-buttons,
+  .upload-button + .spikes-direction-buttons,
+  .upload-button + .slice-direction-buttons {
+    margin-top: 0 !important;
+  }
+#displacement-tool {
+    padding-top: 0;
+    overflow: hidden;
+  }
+
+  #displacement-canvas-container {
+    position: absolute;
+
+    top: var(--mobile-canvas-top, 0px);
+    bottom: 0;
+    left: 12px;
+    right: 12px;
+
+    width: auto;
+    height: auto;
+
+    margin: 0;
+
+    transform: translateY(-100px);
+  }
+
+  #displacement-canvas-container canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  #effect-selector {
+    left: 12px;
+    right: 12px;
+    top: 0px;
+    width: auto;
+  }
+
+  .effect-selector-button {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 9px 3px;
+  }
+
+  #displacement-controls {
+    left: 12px;
+    top: 40px;
+    max-width: calc(100% - 24px);
+    padding: 10px;
+  }
+
+  .direction-button {
+    min-height: 32px;
+    padding: 7px 4px;
+  }
+
+  .upload-button,
+  .action-button {
+    min-height: 32px;
+    padding: 8px 4px;
+  }
+
+  .upload-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  /*
+    Keep the slider visually thin, but give the finger a much
+    larger invisible hit area around it.
+  */
+  .tool-slider {
+    height: 28px;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .tool-slider::-webkit-slider-runnable-track {
+    height: 1px;
+    background: #B7BABF;
+    box-shadow: none;
+  }
+
+  .tool-slider::-webkit-slider-thumb {
+    width: 14px;
+    height: 14px;
+    margin-top: -6.5px;
+    background: #f9f9f9;
+    box-shadow: none;
+  }
+
+  .tool-slider::-moz-range-track {
+    height: 1px;
+    background: #B7BABF;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .tool-slider::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    background: #f9f9f9;
+    box-shadow: none;
+  }
+
+  /* COMPACT MOBILE UI */
+
+  .control-group {
+    margin-top: 10px;
+  }
+
+  /* Keep breathing room after vertical / horizontal buttons. */
+  .direction-buttons + .control-group {
+    margin-top: 12px;
+  }
+
+  .control-label {
+    margin-bottom: 2px;
+  }
+
+  .control-label-row {
+    margin-bottom: -3px;
+  }
+
+  /* The slider itself has a 28px touch box on mobile.
+     Pull the next slider group upward without changing
+     the good label-to-track distance inside each group. */
+  .control-group:has(.tool-slider) + .control-group:has(.tool-slider) {
+    margin-top: -1px;
+  }
+
+  .control-title {
+    margin-bottom: 10px;
+  }
+
+  #download-button {
+    margin-top: 6px;
+  }
+}
+
+/*
+  Touch browsers can keep :hover after a tap. Remove that
+  sticky state while preserving the real active/selected state.
+*/
+@media (hover: none), (pointer: coarse) {
+
+  .effect-selector-button:not(.active):hover,
+  .direction-button:not(.active):hover,
+  .upload-button:hover,
+  .action-button:hover {
+    background: transparent;
+    color: #1C1D21;
+  }
+
+  .effect-selector-button:active,
+  .direction-button:active,
+  .upload-button:active,
+  .action-button:active {
+    background: #B7BABF;
+    color: #f9f9f9;
+  }
+}

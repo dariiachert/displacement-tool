@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Displacement Tool — Dariia Chert</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
+</head>
+<body>
+<div id="displacement-tool">
+
+  <div id="displacement-canvas-container"></div>
+
+  <!-- EFFECT SELECTOR -->
+
+  <div id="effect-selector">
+
+    <button
+      id="effect-spikes"
+      class="effect-selector-button active"
+      type="button"
+    >
+      spikes
+    </button>
+
+    <button
+      id="effect-wave"
+      class="effect-selector-button"
+      type="button"
+    >
+      wave
+    </button>
+
+    <button
+      id="effect-slice"
+      class="effect-selector-button"
+      type="button"
+    >
+      slice
+    </button>
+
+    <button id="effect-warp" class="effect-selector-button" type="button">warp</button>
+    <button id="effect-melt" class="effect-selector-button" type="button">melt</button>
+
+  </div>
+
+
+  <!-- CONTROLS -->
+
+  <div id="displacement-controls">
+
+    <div
+      id="active-effect-title"
+      class="control-title"
+    >
+      spikes
+    </div>
+
+
+    <!-- UPLOAD -->
+
+    <label class="upload-button">
+
+      upload image
+
+      <input
+        id="displacement-upload"
+        type="file"
+        accept="image/png,image/jpeg,image/webp"
+      >
+
+    </label>
+
+
+    <!-- SPIKES -->
+
+    <div id="spikes-controls-panel">
+
+      <div class="control-group">
+        <div class="direction-buttons spikes-direction-buttons">
+
+          <button
+            id="direction-vertical"
+            class="direction-button active"
+            type="button"
+          >
+            vertical
+          </button>
+
+          <button
+            id="direction-horizontal"
+            class="direction-button"
+            type="button"
+          >
+            horizontal
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="control-group">
+
+        <div class="control-label-row">
+          <span>length</span>
+          <span id="length-value">50</span>
+        </div>
+
+        <input
+          id="length-slider"
+          class="tool-slider"
+          type="range"
+          min="20"
+          max="320"
+          value="50"
+          step="1"
+        >
+
+      </div>
+
+
+      <div class="control-group">
+
+        <div class="control-label-row">
+          <span>density</span>
+          <span id="density-value">18</span>
+        </div>
+
+        <input
+          id="density-slider"
+          class="tool-slider"
+          type="range"
+          min="1"
+          max="100"
+          value="18"
+          step="1"
+        >
+
+      </div>
+
+
+      <div class="control-group">
+
+        <div class="control-label-row">
+          <span>width</span>
+          <span id="width-value">5</span>
+        </div>
+
+        <input
+          id="width-slider"
+          class="tool-slider"
+          type="range"
+          min="1"
+          max="20"
+          value="5"
+          step="0.5"
+        >
+
+      </div>
+
+
+      <div class="control-group">
+
+        <div class="control-label-row">
+          <span>movement</span>
+          <span id="movement-value">44</span>
+        </div>
+
+        <input
+          id="movement-slider"
+          class="tool-slider"
+          type="range"
+          min="0"
+          max="100"
+          value="44"
+          step="1"
+        >
+
+      </div>
+
+    </div>
+
+
+    <!-- WAVE -->
+
+    <div
+      id="wave-controls-panel"
+      style="display:none;"
+    >
+
+      <div class="control-group">
+
+        <div class="control-label-row">
+          <span>x distortion</span>
+          <span id="wave-x-value">12</span>
+        </div>
+
+        <input
+          id="wave-x-slider"
+          class="tool-slider"
+          type="range"
+          min="0"
+          max="40"
+          value="12"
+          step="1"
+        >
+
+      </div>
+
+
+      <div class="control-group">
+
+        <div class="control-label-row">
+          <span>y distortion</span>
+          <span id="wave-y-value">22</span>
+        </div>
+
+        <input
+          id="wave-y-slider"
+          class="tool-slider"
+          type="range"
+          min="0"
+          max="60"
+          value="22"
+          step="1"
+        >
+
+      </div>
+
+
+      <div class="control-group">
+
+        <div class="control-label-row">
+          <span>cell size</span>
+          <span id="wave-cell-value">4</span>
+        </div>
+
+        <input
+          id="wave-cell-slider"
+          class="tool-slider"
+          type="range"
+          min="2"
+          max="16"
+          value="4"
+          step="1"
+        >
+
+      </div>
+
+    </div>
+
+
+    <!-- SLICE -->
+
+    <div
+      id="slice-controls-panel"
+      style="display:none;"
+    >
+
+      <div class="control-group">
+        <div class="direction-buttons slice-direction-buttons">
+
+          <button
+            id="slice-direction-vertical"
+            class="direction-button active"
+            type="button"
+          >
+            vertical
+          </button>
+
+          <button
+            id="slice-direction-horizontal"
+            class="direction-button"
+            type="button"
+          >
+            horizontal
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="control-group">
+
+        <div class="control-label-row">
+          <span>displacement</span>
+          <span id="slice-displacement-value">40</span>
+        </div>
+
+        <input
+          id="slice-displacement-slider"
+          class="tool-slider"
+          type="range"
+          min="-100"
+          max="100"
+          value="40"
+          step="1"
+        >
+
+      </div>
+
+
+      <div class="control-group">
+
+        <div class="control-label-row">
+          <span>density</span>
+          <span id="slice-density-value">30</span>
+        </div>
+
+        <input
+          id="slice-density-slider"
+          class="tool-slider"
+          type="range"
+          min="1"
+          max="100"
+          value="30"
+          step="1"
+        >
+
+      </div>
+
+
+      <div class="control-group">
+
+        <div class="control-label-row">
+          <span>slice width</span>
+          <span id="slice-width-value">12</span>
+        </div>
+
+        <input
+          id="slice-width-slider"
+          class="tool-slider"
+          type="range"
+          min="2"
+          max="40"
+          value="12"
+          step="1"
+        >
+
+      </div>
+
+    </div>
+
+
+    <!-- WARP -->
+    <div id="warp-controls-panel" style="display:none;">
+      <div class="control-group">
+        <div class="direction-buttons warp-mode-buttons">
+          <button id="warp-mode-dark" class="direction-button active" type="button">dark areas</button>
+          <button id="warp-mode-light" class="direction-button" type="button">light areas</button>
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="control-label-row"><span>distortion</span><span id="warp-distortion-value">40</span></div>
+        <input id="warp-distortion-slider" class="tool-slider" type="range" min="0" max="100" value="40" step="1">
+      </div>
+      <div class="control-group">
+        <div class="control-label-row"><span>velocity</span><span id="warp-velocity-value">20</span></div>
+        <input id="warp-velocity-slider" class="tool-slider" type="range" min="0" max="100" value="20" step="1">
+      </div>
+    </div>
+
+    <!-- MELT -->
+    <div id="melt-controls-panel" style="display:none;">
+      <div class="control-group">
+        <div class="control-label-row"><span>position</span><span id="melt-position-value">69</span></div>
+        <input id="melt-position-slider" class="tool-slider" type="range" min="0" max="100" value="69" step="1">
+      </div>
+      <div class="control-group">
+        <div class="control-label-row"><span>radius</span><span id="melt-radius-value">55</span></div>
+        <input id="melt-radius-slider" class="tool-slider" type="range" min="0" max="100" value="55" step="1">
+      </div>
+      <div class="control-group">
+        <div class="control-label-row"><span>distortion</span><span id="melt-distortion-value">60</span></div>
+        <input id="melt-distortion-slider" class="tool-slider" type="range" min="0" max="100" value="60" step="1">
+      </div>
+    </div>
+
+    <!-- DOWNLOAD -->
+
+    <button
+      id="download-button"
+      class="action-button"
+      type="button"
+    >
+      download png
+    </button>
+
+  </div>
+
+</div>
+</body>
+</html>
