@@ -4193,3 +4193,190 @@ function meltBuildRowMap(w, h, positionValue, radiusValue, distortionValue) {
     );
   }, { passive: true });
 })();
+
+
+/* =========================================================
+   LOCAL INVERT CURSOR — DISPLACEMENT TOOL
+   ========================================================= */
+
+(function () {
+
+  const desktopPointer = window.matchMedia(
+    "(hover: hover) and (pointer: fine)"
+  );
+
+  const CURSOR_SIZE = 30;
+  const CURSOR_RADIUS = CURSOR_SIZE / 2;
+
+  let cursor = null;
+  let style = null;
+
+  function sendCursorMessage(type) {
+
+    if (window.parent === window) {
+      return;
+    }
+
+    window.parent.postMessage(
+      { type: type },
+      "*"
+    );
+
+  }
+
+  function moveCursor(event) {
+
+    if (!cursor) {
+      return;
+    }
+
+    cursor.style.transform =
+      "translate3d(" +
+      (event.clientX - CURSOR_RADIUS) + "px, " +
+      (event.clientY - CURSOR_RADIUS) + "px, 0)";
+
+    cursor.style.opacity = "1";
+
+  }
+
+  function hideCursor() {
+
+    if (cursor) {
+      cursor.style.opacity = "0";
+    }
+
+    sendCursorMessage(
+      "displacement-cursor-leave"
+    );
+
+  }
+
+  function showCursor() {
+
+    if (cursor) {
+      cursor.style.opacity = "1";
+    }
+
+    sendCursorMessage(
+      "displacement-cursor-enter"
+    );
+
+  }
+
+  function createCursor() {
+
+    if (cursor || !desktopPointer.matches) {
+      return;
+    }
+
+    style = document.createElement("style");
+
+    style.id = "tool-invert-cursor-style";
+
+    style.textContent = `
+      @media (hover: hover) and (pointer: fine) {
+
+        html,
+        body,
+        body * {
+          cursor: none !important;
+        }
+
+      }
+
+      #tool-invert-cursor {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: ${CURSOR_SIZE}px;
+        height: ${CURSOR_SIZE}px;
+        border-radius: 50%;
+        background: #ffffff;
+        mix-blend-mode: difference;
+        pointer-events: none;
+        z-index: 2147483647;
+        transform: translate3d(-100px, -100px, 0);
+        opacity: 0;
+        will-change: transform, opacity;
+      }
+    `;
+
+    document.head.appendChild(style);
+
+    cursor = document.createElement("div");
+    cursor.id = "tool-invert-cursor";
+
+    document.body.appendChild(cursor);
+
+  }
+
+  function removeCursor() {
+
+    if (cursor) {
+      cursor.remove();
+      cursor = null;
+    }
+
+    if (style) {
+      style.remove();
+      style = null;
+    }
+
+  }
+
+  function updateCursorMode() {
+
+    if (desktopPointer.matches) {
+      createCursor();
+    } else {
+      removeCursor();
+    }
+
+  }
+
+  document.addEventListener(
+    "mousemove",
+    moveCursor,
+    { passive: true }
+  );
+
+  document.addEventListener(
+    "mouseenter",
+    showCursor
+  );
+
+  document.addEventListener(
+    "mouseleave",
+    hideCursor
+  );
+
+  if (desktopPointer.addEventListener) {
+
+    desktopPointer.addEventListener(
+      "change",
+      updateCursorMode
+    );
+
+  } else if (desktopPointer.addListener) {
+
+    desktopPointer.addListener(
+      updateCursorMode
+    );
+
+  }
+
+  if (document.readyState === "loading") {
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      updateCursorMode
+    );
+
+  } else {
+
+    updateCursorMode();
+
+  }
+
+})();
+
