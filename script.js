@@ -4105,6 +4105,28 @@ function meltBuildRowMap(w, h, positionValue, radiusValue, distortionValue) {
       }
 
 
+!data ||
+    data.type !== "displacement-viewport-bottom"
+  ) {
+    return;
+  }
+
+  const bottom = Number(data.visibleBottom);
+
+  if (!Number.isFinite(bottom)) return;
+
+  lastReadymagVisibleBottom = bottom;
+  applyReadymagViewportBottom(bottom);
+});
+
+window.addEventListener("resize", function () {
+  if (lastReadymagVisibleBottom !== null) {
+    applyReadymagViewportBottom(
+      lastReadymagVisibleBottom
+    );
+  }
+});
+      
       /* RESIZE OBSERVER */
 
       if (
