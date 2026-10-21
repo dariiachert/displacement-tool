@@ -4105,7 +4105,50 @@ function meltBuildRowMap(w, h, positionValue, radiusValue, distortionValue) {
       }
 
 
-!data ||
+
+/* DESKTOP ADAPTIVE HEIGHT FROM READYMAG */
+
+let lastReadymagVisibleBottom = null;
+
+function applyReadymagViewportBottom(visibleBottom) {
+  const isMobile = window.matchMedia(
+    "(max-width: 767px)"
+  ).matches;
+
+  if (isMobile) {
+    container.style.removeProperty("height");
+    container.style.removeProperty("bottom");
+    resizeToTool();
+    return;
+  }
+
+  if (!Number.isFinite(visibleBottom)) return;
+
+  // Position of the canvas container inside the tool.
+  const toolRect = tool.getBoundingClientRect();
+  const containerRect = container.getBoundingClientRect();
+
+  const canvasTop = containerRect.top - toolRect.top;
+
+  // visibleBottom already includes the 20px bottom gap.
+  const availableHeight = Math.max(
+    1,
+    Math.floor(visibleBottom - canvasTop)
+  );
+
+  container.style.bottom = "auto";
+  container.style.height = availableHeight + "px";
+
+  resizeToTool();
+}
+
+window.addEventListener("message", function (event) {
+  if (event.source !== window.parent) return;
+
+  const data = event.data;
+
+  if (
+    !data ||
     data.type !== "displacement-viewport-bottom"
   ) {
     return;
@@ -4126,6 +4169,7 @@ window.addEventListener("resize", function () {
     );
   }
 });
+
       
       /* RESIZE OBSERVER */
 
